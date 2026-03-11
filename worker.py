@@ -1,4 +1,4 @@
-python
+`python
 import requests
 import random
 import time
@@ -34,35 +34,3 @@ class GenviaGlobalWorker:
 if __name__ == "__main__":
     genvia = GenviaGlobalWorker()
     genvia.run()
-```
-4. Klik **Commit changes...** (Tombol hijau).
-
----
-
-### Langkah 3: Masukkan "Jantung Otomatis" (main.yml)
-1. Klik **Add file** > **Create new file**.
-2. Nama file (Wajib sama): `.github/workflows/main.yml`
-3. **Copy & Paste seluruh kode ini tanpa perubahan:**
-
-```yaml
-name: GENVIA_REWARD_SYSTEM
-
-on:
-  schedule:
-    - cron: '*/15 * * * *' # Bekerja otomatis setiap 15 menit
-  workflow_dispatch:
-
-jobs:
-  run_worker:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout Code
-        uses: actions/checkout@v3
-      - name: Setup Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.9'
-      - name: Install Tools
-        run: pip install requests
-      - name: Execute Genvia Logic
-        run: python worker.py
